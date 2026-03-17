@@ -23,15 +23,12 @@ jobs:
         run: |
           pip install fastapi uvicorn requests flake8 python-dotenv
 
-      - name: Set API Key
-        env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-        run: echo "DeepSeek API key set"
-
       - name: Backend starten
         run: |
           uvicorn backend.main:app --host 127.0.0.1 --port 8000 --log-level debug &
           sleep 5
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
       - name: Run CLI client
         run: |
