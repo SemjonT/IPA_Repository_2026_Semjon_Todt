@@ -23,14 +23,19 @@ jobs:
         run: |
           pip install fastapi uvicorn requests flake8 python-dotenv
 
+      - name: Set API Key
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: echo "DeepSeek API key set"
+
       - name: Backend starten
         run: |
           uvicorn backend.main:app --host 127.0.0.1 --port 8000 &
           sleep 5
 
-      - name: Python Dateien finden und analysieren
+      - name: Run CLI client
         run: |
-          for file in $(find . -name "*.py"); do
+          for file in $(find . -name "*.py" -not -path "./cli/*" -not -path "./backend/*" -not -path "./services/*"); do
             echo "Processing $file"
-            python3 cli/cli_client.py $file
+            python3 cli/cli_client.py "$file"
           done

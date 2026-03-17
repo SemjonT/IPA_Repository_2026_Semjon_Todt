@@ -1,6 +1,6 @@
 import random
 
-# Test 1
+# Test 2
 
 def intro():
     print("Willkommen zum Mini-Abenteuer!")
