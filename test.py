@@ -1,5 +1,7 @@
 import random
 
+# Test 1
+
 def intro():
     print("Willkommen zum Mini-Abenteuer!")
     print("Du stehst vor zwei Türen: links oder rechts.")
