@@ -61,9 +61,26 @@ class CLIClient:
         else:
             print("[INFO] No issues found")
 
-        print("\n[CODE OUTPUT]")
-        print(result["code"])
+        # print("\n[CODE OUTPUT]")
+        # print(result["code"])
 
+        if optimized:
+            self._save_optimized_code(filename, result["code"])
+
+    def _save_optimized_code(self, filename: str, code: str) -> None:
+        """Save optimized code to a new file.
+
+        Args:
+            filename (str): Original file name.
+            code (str): Optimized Python code.
+        """
+
+        new_filename = filename.replace(".py", "_optimized.py")
+
+        with open(new_filename, "w", encoding="utf-8") as file:
+            file.write(code)
+
+        print(f"[INFO] Optimized file saved as: {new_filename}")
 
 def read_file(filepath: str) -> str:
     """Read file content from disk.
