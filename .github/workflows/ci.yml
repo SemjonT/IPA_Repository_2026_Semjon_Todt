@@ -1,0 +1,6 @@
+name: AI Code Optimization
+
+on:
+  push:
+    branches:
+      - main
