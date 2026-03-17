@@ -27,7 +27,8 @@ jobs:
       - name: Set API Key
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-        run: echo "DeepSeek API key set"
+        run: echo $DEEPSEEK_API_KEY
+        # run: echo "DeepSeek API key set"
 
       - name: Backend starten
         run: |
