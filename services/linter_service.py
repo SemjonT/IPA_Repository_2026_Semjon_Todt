@@ -1,6 +1,7 @@
 """Service responsible for performing Python code linting."""
 
 import subprocess
+import sys
 import tempfile
 from typing import Dict, List
 
@@ -26,7 +27,7 @@ class LinterService:
             temp_file.flush()
 
             result = subprocess.run(
-                ["python3", "-m", "flake8", temp_file.name],
+                [sys.executable, "-m", "flake8", temp_file.name],
                 capture_output=True,
                 text=True
             )
