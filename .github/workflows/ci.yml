@@ -3,7 +3,7 @@ name: AI Code Optimization
 on:
   push:
     branches:
-      - main
+      - semjon-dev
   pull_request:
 
 jobs:
