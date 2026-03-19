@@ -1,8 +1,12 @@
 """Service responsible for communication with the DeepSeek API."""
 
 import os
+from urllib import response
 import requests
 from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -57,6 +61,9 @@ class DeepSeekClient:
         response = requests.post(self.url, headers=headers, json=payload)
 
         if response.status_code != 200:
+            logger.error(f"DeepSeek API error: {response.status_code}")
+            logger.error(response.text)
+            
             raise Exception(
                 f"DeepSeek API error: {response.status_code} {response.text}"
             )
