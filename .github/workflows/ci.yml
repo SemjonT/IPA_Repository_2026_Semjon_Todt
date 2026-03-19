@@ -3,7 +3,7 @@ name: AI Code Optimization
 on:
   push:
     branches:
-      - main
+      - semjon-dev
   pull_request:
 
 jobs:
@@ -25,12 +25,21 @@ jobs:
 
       - name: Backend starten
         run: |
-          uvicorn backend.main:app --host 127.0.0.1 --port 8000 &
+          uvicorn backend.main:app --host 127.0.0.1 --port 8000 --log-level debug &
           sleep 5
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
-      - name: Python Dateien finden und analysieren
+      - name: Run CLI client
         run: |
-          for file in $(find . -name "*.py"); do
+          for file in $(find . -name "*.py" -not -path "./cli/*" -not -path "./backend/*" -not -path "./services/*"); do
             echo "Processing $file"
-            python3 cli/cli_client.py $file
+            python3 cli/cli_client.py "$file"
           done
+      
+      - name: Upload optimized files
+        uses: actions/upload-artifact@v4
+        with:
+          name: optimized-code
+          path: |
+            **/*_optimized.py

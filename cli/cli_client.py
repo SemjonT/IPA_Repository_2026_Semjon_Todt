@@ -2,6 +2,10 @@
 
 import requests
 import sys
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 BACKEND_URL = "http://localhost:8000/optimize-code"
@@ -33,8 +37,8 @@ class CLIClient:
         response = requests.post(self.backend_url, json=payload)
 
         if response.status_code != 200:
-            print(f"[ERROR] {filename}: {response.status_code}")
-            print(response.text)
+            logger.error(f"{filename}: {response.status_code}")
+            logger.error(response.text)
             return
 
         result = response.json()
