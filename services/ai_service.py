@@ -46,9 +46,12 @@ class DeepSeekClient:
                     "role": "system",
                     "content": (
                         "You are a Python code reviewer. "
-                        "Fix PEP8 violations, enforce snake_case naming, "
-                        "and add missing Google-style docstrings. "
-                        "Return the full corrected Python code only."
+                        "Your task is to rewrite the entire Python code according to the following rules:\n"
+                        "- Follow PEP8 formatting guidelines\n"
+                        "- Use snake_case naming conventions\n"
+                        "- Add missing docstrings to functions and classes\n"
+                        "Return the **entire code** after applying these improvements.\n"
+                        "Do not include explanations or comments outside the code."
                     )
                 },
                 {
@@ -86,5 +89,4 @@ class DeepSeekClient:
             str: Prompt containing the code.
         """
 
-        return {f"Optimize the following Python code "
-                f"from the {filename} file:\n\n{code}"}
+        return f"Optimize the following Python code from the {filename} file:\n\n{code}"
