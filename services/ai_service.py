@@ -67,6 +67,10 @@ class DeepSeekClient:
             raise Exception(
                 f"DeepSeek API error: {response.status_code} {response.text}"
             )
+        
+        if response.status_code == 401:
+            logger.error("Invalid DeepSeek API key.")
+            raise Exception("Authentication failed")
 
         data = response.json()
 

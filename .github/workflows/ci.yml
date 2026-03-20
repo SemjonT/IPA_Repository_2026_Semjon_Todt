@@ -32,7 +32,7 @@ jobs:
 
       - name: Run CLI client
         run: |
-          for file in $(find . -name "*.py" -not -path "./cli/*" -not -path "./backend/*" -not -path "./services/*"); do
+          for file in $(find . -name "*.py" -not -name "*_optimized.py" -not -path "./cli/*" -not -path "./backend/*" -not -path "./services/*"); do
             echo "Processing $file"
             python3 cli/cli_client.py "$file"
           done

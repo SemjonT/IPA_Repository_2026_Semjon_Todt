@@ -28,22 +28,25 @@ class CLIClient:
             filename (str): Name of the file.
             code (str): Source code content.
         """
+        try:
+            payload = {
+                "filename": filename,
+                "code": code
+            }
 
-        payload = {
-            "filename": filename,
-            "code": code
-        }
+            response = requests.post(self.backend_url, json=payload)
 
-        response = requests.post(self.backend_url, json=payload)
+            if response.status_code != 200:
+                logger.error(f"{filename}: {response.status_code}")
+                logger.error(response.text)
+                return
 
-        if response.status_code != 200:
-            logger.error(f"{filename}: {response.status_code}")
-            logger.error(response.text)
-            return
+            result = response.json()
 
-        result = response.json()
-
-        self._print_result(result)
+            self._print_result(result)
+        except requests.exceptions.ConnectionError:
+            logger.error("Backend is not reachable.")
+            sys.exit(1)
 
     def _print_result(self, result: dict) -> None:
         """Print the result in a readable format.
@@ -95,9 +98,12 @@ def read_file(filepath: str) -> str:
     Returns:
         str: File content.
     """
-
-    with open(filepath, "r", encoding="utf-8") as file:
-        return file.read()
+    try:
+        with open(filepath, "r", encoding="utf-8") as file:
+            return file.read()
+    except FileNotFoundError:
+        logger.error(f"File not found: {filepath}")
+        sys.exit(1)
 
 
 def main():
