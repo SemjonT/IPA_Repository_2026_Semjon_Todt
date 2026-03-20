@@ -53,5 +53,8 @@ python3 cli/cli_client.py <datei>
         pull_request:
 
 2. **Pull/Push Request auf gewählten Branch ausführen**
+    Bei Codechanges zuerst in der Kommandozeile folgenden Befehl ausführen:
+    > python3 -m flake8 .
+    Danach Fehler beheben (die vom Ordner tests nicht beheben)
 
 3. **Auf GitHub Actions gehen und optimized-code von Artefakten herunterladen**
