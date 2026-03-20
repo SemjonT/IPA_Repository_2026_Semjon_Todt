@@ -10,7 +10,8 @@ setup_logging()
 
 app = FastAPI(
     title="AI Code Optimization API",
-    description="Backend service for automated Python code analysis and optimization.",
+    description="Backend service for automated Python code "
+    "analysis and optimization.",
     version="1.0.0"
 )
 

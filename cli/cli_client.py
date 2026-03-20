@@ -3,12 +3,13 @@
 import requests
 import sys
 import logging
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-BACKEND_URL = "http://localhost:8000/optimize-code"
+BACKEND_URL = os.getenv("BACKEND_URL") or "http://localhost:8000/optimize-code"
 
 
 class CLIClient:
@@ -88,6 +89,7 @@ class CLIClient:
             file.write(code)
 
         print(f"[INFO] Optimized file saved as: {new_filename}")
+
 
 def read_file(filepath: str) -> str:
     """Read file content from disk.

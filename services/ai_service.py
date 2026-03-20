@@ -1,7 +1,7 @@
 """Service responsible for communication with the DeepSeek API."""
 
+from fileinput import filename
 import os
-from urllib import response
 import requests
 from dotenv import load_dotenv
 import logging
@@ -46,9 +46,12 @@ class DeepSeekClient:
                     "role": "system",
                     "content": (
                         "You are a Python code reviewer. "
-                        "Fix PEP8 violations, enforce snake_case naming, "
-                        "and add missing Google-style docstrings. "
-                        "Return the full corrected Python code only."
+                        "Your task is to rewrite the entire Python code according to the following rules:\n"
+                        "- Follow PEP8 formatting guidelines\n"
+                        "- Use snake_case naming conventions\n"
+                        "- Add missing docstrings to functions and classes\n"
+                        "Return the **entire code** after applying these improvements.\n"
+                        "Do not include explanations or comments outside the code."
                     )
                 },
                 {
@@ -63,11 +66,9 @@ class DeepSeekClient:
         if response.status_code != 200:
             logger.error(f"DeepSeek API error: {response.status_code}")
             logger.error(response.text)
-            
             raise Exception(
                 f"DeepSeek API error: {response.status_code} {response.text}"
             )
-        
         if response.status_code == 401:
             logger.error("Invalid DeepSeek API key.")
             raise Exception("Authentication failed")
@@ -88,4 +89,4 @@ class DeepSeekClient:
             str: Prompt containing the code.
         """
 
-        return f"Optimize the following Python code:\n\n{code}"
+        return f"Optimize the following Python code from the {filename} file:\n\n{code}"
