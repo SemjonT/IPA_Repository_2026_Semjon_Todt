@@ -6,12 +6,9 @@ from pydantic import BaseModel
 class CodeRequest(BaseModel):
     """Model representing a code analysis or optimization request.
 
-    Args:
+    Attributes:
         filename (str): Name of the Python file.
         code (str): Source code to analyze or optimize.
-
-    Returns:
-        CodeRequest: Structured request object.
     """
 
     filename: str

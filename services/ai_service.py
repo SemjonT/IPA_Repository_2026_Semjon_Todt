@@ -1,5 +1,6 @@
 """Service responsible for communication with the DeepSeek API."""
 
+from fileinput import filename
 import os
 from urllib import response
 import requests
@@ -88,4 +89,4 @@ class DeepSeekClient:
             str: Prompt containing the code.
         """
 
-        return f"Optimize the following Python code:\n\n{code}"
+        return f"Optimize the following Python code from the {filename} file:\n\n{code}"
