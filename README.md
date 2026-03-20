@@ -27,6 +27,10 @@ Es besteht aus zwei separaten Komponenten:
    ```env
    DEEPSEEK_API_KEY=<DEIN_API_KEY_HIER>
 
+   Falls ein Server besteht kann die Backend URL festgesetzt werden:
+   ```env
+   BACKEND_URL=<DEINE_BACKEND_URL>
+
 2. **Backend mit folgendem Command starten**
     python3 -m uvicorn backend.main:app --reload
 

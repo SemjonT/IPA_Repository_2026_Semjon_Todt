@@ -3,13 +3,13 @@
 import requests
 import sys
 import logging
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-BACKEND_URL = "http://localhost:8000/optimize-code"
-
+BACKEND_URL = os.getenv("BACKEND_URL") or "http://localhost:8000/optimize-code"
 
 class CLIClient:
     """Client responsible for communicating with the backend API."""
