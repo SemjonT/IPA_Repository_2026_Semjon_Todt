@@ -2,10 +2,11 @@
 
 import subprocess
 import tempfile
-from typing import Dict, List
+from typing import Dict
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 class LinterService:
     """Service for analyzing Python code using flake8."""
@@ -43,7 +44,6 @@ class LinterService:
                 "has_errors": len(errors) > 0,
                 "errors": errors
             }
-        
         except Exception as e:
             logger.error("Linter failed")
             logger.error(str(e))

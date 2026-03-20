@@ -15,6 +15,7 @@ ai_client = DeepSeekClient()
 
 logger = logging.getLogger(__name__)
 
+
 @router.post("/optimize-code")
 def optimize_code(request: CodeRequest):
     """Receive Python code and return a placeholder optimization response.
@@ -43,7 +44,6 @@ def optimize_code(request: CodeRequest):
                 "lint_errors": lint_result["errors"],
                 "code": optimized_code
             }
-        
         logger.info("No lint errors found")
         # 3. Kein Fehler
         return {
@@ -56,7 +56,6 @@ def optimize_code(request: CodeRequest):
     except Exception as e:
         logger.error("Error during optimization")
         logger.error(traceback.format_exc())
-        
         # Traceback in der Konsole ausgeben
         traceback.print_exc()
         # HTTP 500 mit Fehlertext zurückgeben

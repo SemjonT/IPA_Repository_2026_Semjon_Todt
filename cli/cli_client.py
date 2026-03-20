@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 BACKEND_URL = os.getenv("BACKEND_URL") or "http://localhost:8000/optimize-code"
 
+
 class CLIClient:
     """Client responsible for communicating with the backend API."""
 
@@ -88,6 +89,7 @@ class CLIClient:
             file.write(code)
 
         print(f"[INFO] Optimized file saved as: {new_filename}")
+
 
 def read_file(filepath: str) -> str:
     """Read file content from disk.
