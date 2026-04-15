@@ -3,7 +3,7 @@ name: AI Code Optimization
 on:
   push:
     branches:
-      - test
+      - present
   pull_request:
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
             echo "Processing $file"
             python3 cli/cli_client.py "$file"
           done
-      
+
       - name: Upload optimized files
         uses: actions/upload-artifact@v4
         with:
