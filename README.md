@@ -55,7 +55,7 @@ python3 cli/cli_client.py <datei>
    on:
      push:
        branches:
-         - testefe
+         - testefewrh
      pull_request:
    ```
 
