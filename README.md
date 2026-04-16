@@ -1,7 +1,7 @@
 # AI Code Optimization
 
 Dieses Projekt automatisiert die Analyse und Optimierung von Python-Code.  
-Es besteht eaus zwei separaten Komponenten:
+Es besteht aus zwei separaten Komponenten:
 
 1. **Backend** – verarbeitet Code, führt Linting durch und kommuniziert mit der DeepSeek API.
 2. **CLI-Client** – Schnittstelle für den Entwickler oder GitHub Actions, um Code an das Backend zu senden.
